@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zufallsdatei Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Zufallsdatei Generator</h1>
+    <input type="text" id="inputText" placeholder="Gib etwas ein..." required>
+    <button onclick="generateFile()">Erstellen und Herunterladen</button>
+
+    <script>
+        function generateFile() {
+            const inputText = document.getElementById('inputText').value;
+            const randomText = Array.from({length: 20}, () => Math.random().toString(36).charAt(2)).join('');
+            const fileContent = `Hier sind zufällige Zeichen:\n\n${randomText}\n\n"${inputText}"`;
+            const blob = new Blob([fileContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'zufallsdatei.txt';
+            link.click();
+        }
+    </script>
+</body>
+</html>
