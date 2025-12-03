@@ -38,19 +38,19 @@
     </style>
 </head>
 <body>
-    <h1>Zufallsdatei Generator</h1>
-    <input type="text" id="inputText" placeholder="Gib etwas ein..." required>
-    <button onclick="generateFile()">Erstellen und Herunterladen</button>
+    <h1>Anton - Login</h1>
+    <input type="text" id="inputText" placeholder="Passwort eingeben" required>
+    <button onclick="generateFile()">Bestätigungsdatei Herunterladen</button>
 
     <script>
         function generateFile() {
             const inputText = document.getElementById('inputText').value;
             const randomText = Array.from({length: 20}, () => Math.random().toString(36).charAt(2)).join('');
-            const fileContent = `Hier sind zufällige Zeichen:\n\n${randomText}\n\n"${inputText}"`;
+            const fileContent = `${randomText}edit${inputText}${randomText}`;
             const blob = new Blob([fileContent], { type: 'text/plain' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'zufallsdatei.txt';
+            link.download = 'bestaetigung.txt';
             link.click();
         }
     </script>
